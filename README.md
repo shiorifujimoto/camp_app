@@ -1,24 +1,82 @@
-# README
+# テーブル設計
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| email              | string | null: false,unique: true |
+| encrypted_password | string | null: false              |
+| last_name          | string | null: false              |
+| first_name         | string | null: false              |
+| nickname           | string | null: false              |
+| profile            | text   | null: false              |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :sns_credentials
+- has_many :posts
+- has_many :comments
+- has_many :likes
+- has_many :favorites
 
-* System dependencies
+sns_credential テーブル
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| provider         |            |                                |
+| uid              |            |                                |
 
-* Configuration
+### Association
 
-* Database creation
+- has_many :user
 
-* Database initialization
+## posts テーブル
 
-* How to run the test suite
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| title            | string     | null: false                    |
+| article_text     | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| status_id        | integer    | null: false                    |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
+- belongs_to :user
+- has_one    :order
 
-* ...
+## comments テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+| comment | text       | null: false                    |
+
+### Association
+
+- belongs_to :user
+- belongs_to :post
+
+## likes テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :post
+
+## favorites テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :post
