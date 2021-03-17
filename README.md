@@ -18,12 +18,13 @@
 - has_many :likes
 - has_many :favorites
 
-sns_credential テーブル
+## sns_credentials テーブル
+
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | user             | references | null: false, foreign_key: true |
-| provider         |            |                                |
-| uid              |            |                                |
+| provider         | string     |                                |
+| uid              | string     |                                |
 
 ### Association
 
