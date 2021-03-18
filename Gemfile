@@ -55,6 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'pry-rails'
+gem 'active_hash'
 
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'

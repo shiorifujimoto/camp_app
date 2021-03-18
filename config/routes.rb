@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   }
    root 'users#index' 
    resources :users, only: :new 
+   resources :posts,only: [:index, :new]
  end
