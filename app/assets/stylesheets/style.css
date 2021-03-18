@@ -111,6 +111,10 @@ body{
   width: 100%;
   margin-bottom: 10px;
 }
+.card:first-child{
+  margin-top: 0px;
+}
+
 .article_card {
   position: relative;
   }
@@ -159,10 +163,16 @@ body{
     align-items: center;
     
   }
-  .card {
-    width: 50%;
-    margin: 0 5px 20px 5px;
+
+  .card:first-child{
+    margin:20px 5px 0px 5px;
   }
+
+  .card{
+    width: 50%;
+    margin:20px 5px 0px 5px;
+  }
+  
   .date {
     font-size: 2em;
     }
