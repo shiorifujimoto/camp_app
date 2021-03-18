@@ -1,0 +1,25 @@
+<% if user_signed_in? %>
+     <li><%= "#{current_user.nickname}でログイン中" %></li>
+     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+<% else %>
+     <p>ログインしていません</p>
+     <li><%= link_to 'ログイン', new_user_session_path %></li>
+     <li><%= link_to '新規登録', new_user_path %></li>
+<% end %>
+
+<div class="card">
+  <div class="example">
+     <%= link_to image_tag("sample_image.jpg", class: :card__img ), root_path%>
+     <div class="date">
+       <p>12</p>
+       <p>2021</p>
+     </div>
+  </div>
+  <div class="card__body">
+    <%= link_to "プロトタイプのタイトル", root_path, class: :card__title%>
+    <p class="card__summary">
+      <%= "プロトタイプのキャッチコピー" %>
+    </p>
+    <%= link_to "by プロトタイプの投稿者名", root_path, class: :card__user %>
+  </div>
+</div>

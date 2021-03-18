@@ -1,8 +1,0 @@
-<% if user_signed_in? %>
-     <li><%= "#{current_user.nickname}でログイン中" %></li>
-     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-<% else %>
-     <p>ログインしていません</p>
-     <li><%= link_to 'ログイン', new_user_session_path %></li>
-     <li><%= link_to '新規登録', new_user_path %></li>
-<% end %>

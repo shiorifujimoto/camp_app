@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CampApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -8,8 +9,25 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+  <header class="header">
+    <div class="inner">
+      <div class="global_nav">
+        <ul class="list">
+          <li><%= link_to image_tag("logo.png", class: :logo), root_path %></li>
+          <li><%= link_to image_tag("search_icon.png", class: :icon), root_path %></li>
+          <li><%= link_to image_tag("post_icon.png", class: :icon), root_path %></li>
+          <li><%= link_to image_tag("user_icon.png", class: :icon), root_path %></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+  <%= yield %>
+  </main>
+  <footer class="footer">
+    <p class="copyright">mycamp</p>
+  </footer>
   </body>
 </html>
