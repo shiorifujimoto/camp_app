@@ -33,6 +33,9 @@ a {
   text-decoration: none;
   color: #3b4043;
 }
+p {
+  font-size: 14px;
+}
 
 /* カラー */
 :root{
@@ -42,16 +45,19 @@ a {
   --footer_color: #a5a58d;
   --font_color: #474246;
 }
+body{
+  background-color: var(--main_color);
+}
 
 /* ヘッダー */
 
 .header {
   background-color: var(--header_color);
-  padding: 20px 0;
+  padding: 10px 0;
 }
 .inner {
-  width: 1024px;
-  margin: 0 auto;
+  width: 90%;
+  margin: 0px auto;
 }
 .gloval_nav {
   width: 100%;
@@ -60,7 +66,7 @@ a {
 }
 
 .logo {
-  width: 200px;
+  width: 120px;
 }
 
 .list {
@@ -101,25 +107,30 @@ a {
 }
 
 /* メイン */
-main {
-  background-color: var(--main_color);
+.card {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.card:first-child{
+  margin-top: 0px;
 }
 
-.example {/*親div*/
-  position: relative;/*相対配置*/
+.article_card {
+  position: relative;
   }
 
 .date {
   position: absolute;
   color: white;
   font-weight: bold; 
-  font-size: 2em;
   font-family :Quicksand, sans-serif;
   text-align: right;
   bottom: 0;
   right: 0;
   padding-right: 5px;
+  font-size: 20px;
   }
+
 
 .example img {
   width: 100%;
@@ -136,37 +147,40 @@ main {
   font-size: 10px;
 }
 
-
-/* タブレット対応 */
-@media (max-width: 1024px) {
-  .inner {
-    width: 90%;
+/* PC表示 */
+@media (min-width: 1025px) {
+  .logo {
+    width: 200px;
+  }
+  main{
+    max-width: 90%;
     margin: 0 auto;
   }
-  .page-heading {
-    font-size: 24px;
+  .container{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
   }
-  .card {
-    width: 48%;
-    margin-bottom: 40px;
-  }
-  .prototype_image{
-    width: 60%;
-  }
-}
 
-/* スマホ表示 */
-@media (max-width: 599px) {
-  .logo {
-    width: 120px;
+  .card:first-child{
+    margin:20px 5px 0px 5px;
   }
+
+  .card{
+    width: 50%;
+    margin:20px 5px 0px 5px;
+  }
+  
+  .date {
+    font-size: 2em;
+    }
+
   .page-heading {
     font-size: 20px;
   }
-  .card {
-    width: 100%;
-    margin-bottom: 60px;
-  }
+ 
   .card__title {
     font-size: 18px;
   }
