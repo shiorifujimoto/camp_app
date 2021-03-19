@@ -109,7 +109,7 @@ body{
 /* メイン */
 .card {
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .card:first-child{
   margin-top: 0px;
@@ -130,6 +130,16 @@ body{
   padding-right: 5px;
   font-size: 20px;
   }
+
+.image-month{
+  font-size: 2em;
+  position: absolute;
+  bottom: 24px;
+  right: 10px;
+}
+.image-year{
+  font-size: 24px;
+}
 
 
 .example img {
@@ -157,11 +167,9 @@ body{
     margin: 0 auto;
   }
   .container{
-    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
   }
 
   .card:first-child{
@@ -176,6 +184,16 @@ body{
   .date {
     font-size: 2em;
     }
+
+  .image-month{
+    position: absolute;
+    bottom: 38px;
+    right: 31px;
+  }
+
+  .image-year{
+    font-size: 45px;
+  }
 
   .page-heading {
     font-size: 20px;
