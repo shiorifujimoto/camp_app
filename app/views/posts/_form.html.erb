@@ -1,4 +1,6 @@
-<%= form_with model: @post, url:posts_path, local: true do |f|%>
+<%= form_with model: @post, local: true do |f|%>
+  <%= render 'shared/error_messages', model: f.object %>
+
   <%= f.collection_select(:status_id, Status.all, :id, :name, {}, {class:"genre-select"}) %>
   
   <div class="field">
@@ -7,7 +9,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :image, "プロトタイプの画像" %><br />
+    <%= f.label :image, "投稿画像" %><br />
     <%= f.file_field :image, id:"post_image" %>
   </div>
 
