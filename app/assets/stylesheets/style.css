@@ -107,6 +107,54 @@ body{
 }
 
 /* メイン */
+.container{
+width: 90%;
+margin: 10px;
+}
+
+/*--- user登録 */
+.user_profile_form{
+  height: 4em;
+  width: 90%;
+}
+
+.btn-flat-vertical-border {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  transition: .4s;
+  margin: 10px 0 10px;
+  width: 190px;
+  text-align: center;
+}
+.btn-facebook{
+  border-left: solid 4px #668ad8;
+  border-right: solid 4px #668ad8;
+  color: #668ad8;
+  background: #e1f3ff;
+}
+
+.btn-google{
+  border-left: solid 4px #fbbc04;
+  border-right: solid 4px #fbbc04;
+  color: #fbbc04;
+  background: #FEF7E6;
+}
+
+.btn-facebook:hover {
+  background: #668ad8;
+  color: #FFF;
+}
+
+.btn-google:hover {
+  background: #fbbc04;
+  color: #FFF;
+}  
+.
+/*---end / user登録 */
+
 .card {
   width: 100%;
   margin-top: 10px;
@@ -166,7 +214,7 @@ body{
     max-width: 90%;
     margin: 0 auto;
   }
-  .container{
+  .post_warp{
     display: flex;
     justify-content: space-between;
     align-items: center;

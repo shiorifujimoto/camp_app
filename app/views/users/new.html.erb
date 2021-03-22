@@ -1,3 +1,5 @@
 <%= link_to "メールアドレスで登録", new_user_registration_path%>
-<%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post %>
-<%= link_to "Googleで登録", user_facebook_omniauth_authorize_path, method: :post %>
+<br>
+<%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post, class: "btn-flat-vertical-border btn-facebook" %>
+<br>
+<%= link_to "Googleで登録", user_facebook_omniauth_authorize_path, method: :post, class: "btn-flat-vertical-border btn-google"%>
