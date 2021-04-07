@@ -14,6 +14,15 @@ div {
   margin: 0;
   padding: 0;
 }
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  position:relative;
+  min-height: 100%;
+}
 
 body {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN W3", sans-serif;
@@ -49,6 +58,21 @@ body{
   background-color: var(--main_color);
 }
 
+/* リンクボタン */
+.link_btn{
+  border-radius: 15px;
+  background-color: var(--main_color);
+  box-shadow:  5px 5px 5px #e1dbd5,
+             -5px -5px 5px #fffff9;
+  padding: 5px 25px;
+  margin: 5px;
+}
+.btn-wrap{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 /* ヘッダー */
 
 .header {
@@ -67,6 +91,7 @@ body{
 
 .logo {
   width: 120px;
+  
 }
 
 .list {
@@ -74,10 +99,16 @@ body{
   justify-content: space-between;
   align-items: center;
 }
-.icon {
+.search_icon,
+.post_icon   {
+  border-radius: 11px;
+  background: #c9a890;
+  box-shadow:  5px 5px 5px #b99b84,
+               -5px -5px 5px #d9b59c;
+}
+.icon{
   width: 40px;
 }
-
 .nav__btn{
   display: inline-block;
   padding: 0.4em 1.6em;
@@ -108,8 +139,9 @@ body{
 
 /* メイン */
 .container{
-width: 90%;
-margin: 10px;
+/* width: 90%;
+margin: 10px; */
+position: relative;
 }
 
 /*--- user登録 */
@@ -163,6 +195,9 @@ margin: 10px;
   margin-top: 0px;
 }
 
+.user_card{
+  margin: 10px;
+}
 .article_card {
   position: relative;
   }
@@ -179,6 +214,34 @@ margin: 10px;
   font-size: 20px;
   }
 
+.tag_ribbon {
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0 17px 0 7px;
+  font-size: 0.8em;
+  background: #ffc668;
+  color: #FFF;
+  box-sizing: border-box;
+}
+
+.tag_ribbon:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.tag_ribbon:after {
+  top: 0;
+  right: 0;
+  border-width: 10px 11px 10px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
 .image-month{
   font-size: 2em;
   position: absolute;
@@ -188,17 +251,36 @@ margin: 10px;
 .image-year{
   font-size: 24px;
 }
-
+.post{
+  width: 100px;
+}
 
 .example img {
   width: 100%;
-  }
+}
+
+/*edit.html----------------------*/
+.edit_img{
+  width: 150px;
+}
+#image-list, #before_image{
+  width: 50%;
+}
 /* フッター */
+.main_inner{
+  padding-bottom:1.5em;
+}
 
 .footer {
+  height: 30px;
+  width:100%;
+  position: absolute;
+  bottom: 0;
   background-color: var(--footer_color);
   padding: 10px 0;
 }
+
+
 .copyright {
   text-align: center;
   color: #fff;
@@ -207,6 +289,10 @@ margin: 10px;
 
 /* PC表示 */
 @media (min-width: 1025px) {
+  .main_inner{
+    max-width: 1100px;
+    margin: 0 auto;
+  }
   .logo {
     width: 200px;
   }
@@ -214,7 +300,7 @@ margin: 10px;
     max-width: 90%;
     margin: 0 auto;
   }
-  .post_warp{
+  .post_wrap{
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -7,4 +7,37 @@
      <li><%= link_to '新規登録', new_user_path %></li>
 <% end %>
 
-<%= render partial: 'posts/posts', locals: { post: @post } %>
+  <% if user_signed_in? && %>
+    <% if @post_user %>
+      <% @posts.each do |post| %>
+        <% if post.user_id == current_user.id %>
+          <div class="post_wrap">
+            <div class="card">
+              <div class="article_card">
+                <%= link_to "タイトル:「#{post.title}」", post_path(post.id), class: :card__title %>
+                
+                <div class="status">
+                  <%= post.status.name%>
+                </div>
+                
+                <%= link_to image_tag( post.image, class: :card__img ), post_path(post.id) %>
+              
+                <div class="date">
+                  <div class="image-month">12</div>
+                  <div class="image-year">2020</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+        
+    <% else %>
+      <p>まだ投稿していません</p>
+        <h1>みんなの投稿</h1>
+    <% end %>  
+  <% else %>
+    <%# ログインしていない %>
+    <h1>みんなの投稿</h1>
+  <% end %>
+
