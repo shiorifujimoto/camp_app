@@ -34,9 +34,11 @@ li {
 }
 
 img {
-  max-width: 100%;
+  /* width: 100%; */
+  object-fit: cover; 
   vertical-align: bottom;
 }
+
 
 a {
   text-decoration: none;
@@ -201,7 +203,9 @@ position: relative;
 .article_card {
   position: relative;
   }
-
+.post-partial{
+width: 100%;
+}
 .date {
   position: absolute;
   color: white;
@@ -214,7 +218,7 @@ position: relative;
   font-size: 20px;
   }
 
-.tag_ribbon {
+/* .tag_ribbon {
   display: inline-block;
   position: relative;
   height: 20px;
@@ -241,7 +245,7 @@ position: relative;
   border-width: 10px 11px 10px 0px;
   border-color: transparent #fff transparent transparent;
   border-style: solid;
-}
+} */
 .image-month{
   font-size: 2em;
   position: absolute;
@@ -286,9 +290,27 @@ position: relative;
   color: #fff;
   font-size: 10px;
 }
-
+.post-img{
+  width: 100%;
+  height: calc(100vw / 1.618);
+  object-fit: cover; 
+}
+img.new-img{
+width: 200px;
+height: 200px;
+object-fit: cover; 
+}
+@media (min-width: 650px) {
+  .post-img{
+   
+  }
+}
 /* PC表示 */
 @media (min-width: 1025px) {
+
+  .post-img{
+   
+  }
   .main_inner{
     max-width: 1100px;
     margin: 0 auto;

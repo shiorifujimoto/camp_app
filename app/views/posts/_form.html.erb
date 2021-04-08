@@ -18,11 +18,18 @@
 
       <div class="field">
         <%= f.label :images, "投稿画像" %><br />
-        <%= f.file_field :image %>
+        <%= f.file_field :images, name: 'post[images][]', id: 'post_image', multiple: true %>
       </div>
-       <div id="image-list"></div>
+      <div id="image-list"></div>
+      <% if @post.images.present? %>
+        <p>現在登録されている画像（削除するものはチェックしてください）</p>
+        <% @post.images.each do |image| %>
+          <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+          <%= image_tag image, size:"200x200", class: 'images form-img' %> <br>
+        <% end %>
+      <% end %>
       
-      <%= image_tag @post.image, id: 'before_img' if @post.image.present? %> 
+   
 
       <div class="field">
         <%= f.label :article_text, "記事テキスト" %><br />

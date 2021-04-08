@@ -10,10 +10,16 @@
         <div class="article_card">
           <%= link_to post.title, post_path(post.id), class: :card__title %>
           
-          <%=link_to image_tag( post.image, class: :card__img ), post_path(post.id) %>
-          <div class="date">
-            <div class="image-month">12</div>
-            <div class="image-year">2020</div>
+          <div class="post-partial">
+            <li id="post-<%= post.id %>">
+              <% post.images.each do |image| %>
+                <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+              <% end %>
+            </li>
+            <div class="date">
+              <div class="image-month">12</div>
+              <div class="image-year">2020</div>
+            </div>
           </div>
         </div>
       </div>

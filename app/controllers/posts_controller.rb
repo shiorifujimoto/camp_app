@@ -13,7 +13,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.valid?
       @post.save
-      return redirect_to root_path
+      flash[:success] = "作成しました"
+      return redirect_to post_path(@post.id)
     else
       render :new
     end
@@ -26,10 +27,17 @@ class PostsController < ApplicationController
   end
   
   def update
+    # チェックボックスの分岐
+    if params[:post][:image_ids]
+      params[:post][:image_ids].each do |image_id|
+        image = @post.images.find(image_id)
+        image.purge
+      end
+    end
     if @post.update(post_params)
-      redirect_to root_path
+      flash[:success] = "編集しました"
+      redirect_to posts_url
     else
-      set_tag
       render :edit
     end
   end
@@ -43,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :article_text, :status_id, :category_id,:image).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :article_text, :status_id, :category_id, images: []).merge(user_id: current_user.id)
   end
 
   def set_post
