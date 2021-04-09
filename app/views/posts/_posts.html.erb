@@ -1,0 +1,28 @@
+<div class="post_wrap">
+  <% posts.each do |post| %>
+    <% if post.status_id == 2 %>
+      <div class="card">
+        <div class="user_card">
+          <%= link_to image_tag("user_icon.png", class: :icon), root_path %>
+          <%= link_to "by #{post.user.nickname}", root_path, class: :user %>
+        </div>
+
+        <div class="article_card">
+          <%= link_to post.title, post_path(post.id), class: :card__title %>
+          
+          <div class="post-partial">
+            <li id="post-<%= post.id %>">
+              <% post.images.each do |image| %>
+                <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+              <% end %>
+            </li>
+            <div class="date">
+              <div class="image-month"><%= post.created_at.month %></div>
+              <div class="image-year"><%= post.created_at.year %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

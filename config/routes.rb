@@ -3,7 +3,12 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations'
   }
-  root 'users#index' 
+  root to: 'users#index' 
   resources :users, only: [:index, :new, :show, :edit, :update]  
-  resources :posts, only: [:index, :new, :create, :show]
+  resources :posts, only: [:index, :new, :create, :show, :edit, :update] do
+    collection do
+      get 'tag_search'
+    end
+    get 'tag_search', on: :member
+  end
 end

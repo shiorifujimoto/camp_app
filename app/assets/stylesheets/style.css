@@ -14,6 +14,15 @@ div {
   margin: 0;
   padding: 0;
 }
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  position:relative;
+  min-height: 100%;
+}
 
 body {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN W3", sans-serif;
@@ -25,9 +34,11 @@ li {
 }
 
 img {
-  max-width: 100%;
+  /* width: 100%; */
+  object-fit: cover; 
   vertical-align: bottom;
 }
+
 
 a {
   text-decoration: none;
@@ -49,6 +60,21 @@ body{
   background-color: var(--main_color);
 }
 
+/* リンクボタン */
+.link_btn{
+  border-radius: 15px;
+  background-color: var(--main_color);
+  box-shadow:  5px 5px 5px #e1dbd5,
+             -5px -5px 5px #fffff9;
+  padding: 5px 25px;
+  margin: 5px;
+}
+.btn-wrap{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 /* ヘッダー */
 
 .header {
@@ -67,6 +93,7 @@ body{
 
 .logo {
   width: 120px;
+  
 }
 
 .list {
@@ -74,10 +101,16 @@ body{
   justify-content: space-between;
   align-items: center;
 }
-.icon {
+.search_icon,
+.post_icon   {
+  border-radius: 11px;
+  background: #c9a890;
+  box-shadow:  5px 5px 5px #b99b84,
+               -5px -5px 5px #d9b59c;
+}
+.icon{
   width: 40px;
 }
-
 .nav__btn{
   display: inline-block;
   padding: 0.4em 1.6em;
@@ -107,18 +140,72 @@ body{
 }
 
 /* メイン */
+.container{
+/* width: 90%;
+margin: 10px; */
+position: relative;
+}
+
+/*--- user登録 */
+.user_profile_form{
+  height: 4em;
+  width: 90%;
+}
+
+.btn-flat-vertical-border {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  transition: .4s;
+  margin: 10px 0 10px;
+  width: 190px;
+  text-align: center;
+}
+.btn-facebook{
+  border-left: solid 4px #668ad8;
+  border-right: solid 4px #668ad8;
+  color: #668ad8;
+  background: #e1f3ff;
+}
+
+.btn-google{
+  border-left: solid 4px #fbbc04;
+  border-right: solid 4px #fbbc04;
+  color: #fbbc04;
+  background: #FEF7E6;
+}
+
+.btn-facebook:hover {
+  background: #668ad8;
+  color: #FFF;
+}
+
+.btn-google:hover {
+  background: #fbbc04;
+  color: #FFF;
+}  
+.
+/*---end / user登録 */
+
 .card {
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .card:first-child{
   margin-top: 0px;
 }
 
+.user_card{
+  margin: 10px;
+}
 .article_card {
   position: relative;
   }
-
+.post-partial{
+width: 100%;
+}
 .date {
   position: absolute;
   color: white;
@@ -131,24 +218,116 @@ body{
   font-size: 20px;
   }
 
+/* .tag_ribbon {
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0 17px 0 7px;
+  font-size: 0.8em;
+  background: #ffc668;
+  color: #FFF;
+  box-sizing: border-box;
+}
+
+.tag_ribbon:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.tag_ribbon:after {
+  top: 0;
+  right: 0;
+  border-width: 10px 11px 10px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+} */
+.image-month{
+  font-size: 2em;
+  position: absolute;
+  bottom: 24px;
+  right: 10px;
+}
+.image-year{
+  font-size: 24px;
+}
+.post{
+  width: 100px;
+}
 
 .example img {
   width: 100%;
-  }
+}
+/* error表示 */
+.field_with_errors {
+  display: contents;
+}
+#error_explanation,
+.error-alert{
+  border-radius: 16px;
+background: #f5c589;
+  box-shadow:  8px 8px 16px #c9c5c1,
+              -8px -8px 16px #ffffff;
+  padding: 10px;
+  margin: 10px 0;
+  display: inline-block;
+}
+/*edit.html----------------------*/
+.edit_img{
+  width: 150px;
+}
+#image-list, #before_image{
+  width: 50%;
+}
 /* フッター */
+.main_inner{
+  padding-bottom:1.5em;
+}
 
 .footer {
+  height: 30px;
+  width:100%;
+  position: absolute;
+  bottom: 0;
   background-color: var(--footer_color);
   padding: 10px 0;
 }
+
+
 .copyright {
   text-align: center;
   color: #fff;
   font-size: 10px;
 }
-
+.post-img{
+  width: 100%;
+  height: calc(100vw / 1.618);
+  object-fit: cover; 
+}
+img.new-img{
+width: 200px;
+height: 200px;
+object-fit: cover; 
+}
+@media (min-width: 650px) {
+  .post-img{
+   
+  }
+}
 /* PC表示 */
 @media (min-width: 1025px) {
+
+  .post-img{
+   
+  }
+  .main_inner{
+    max-width: 1100px;
+    margin: 0 auto;
+  }
   .logo {
     width: 200px;
   }
@@ -156,12 +335,10 @@ body{
     max-width: 90%;
     margin: 0 auto;
   }
-  .container{
-    
+  .post_wrap{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
   }
 
   .card:first-child{
@@ -176,6 +353,16 @@ body{
   .date {
     font-size: 2em;
     }
+
+  .image-month{
+    position: absolute;
+    bottom: 38px;
+    right: 31px;
+  }
+
+  .image-year{
+    font-size: 45px;
+  }
 
   .page-heading {
     font-size: 20px;

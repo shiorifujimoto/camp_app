@@ -1,22 +1,42 @@
-<%= form_with model: @post, url:posts_path, local: true do |f|%>
-  <%= f.collection_select(:status_id, Status.all, :id, :name, {}, {class:"genre-select"}) %>
-  
-  <div class="field">
-    <%= f.label :title, "記事タイトル" %><br />
-    <%= f.text_field :title, id:"article_title" %>
-  </div>
+<%= form_with model: post, local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
 
-  <div class="field">
-    <%= f.label :image, "プロトタイプの画像" %><br />
-    <%= f.file_field :image, id:"post_image" %>
-  </div>
+      <div class="field">
+        <%= f.label :status_id, "公開/非公開 必須" %><br />
+        <%= f.collection_select(:status_id, Status.all, :id, :name, {class:"genre-select"}) %>
+      </div>
 
-  <div class="field">
-    <%= f.label :article_text, "記事テキスト" %><br />
-    <%= f.text_area :article_text, class: :form__text, id:"prototype_catch_copy" %>
-  </div>
+      <div class="field">
+        <%= f.label :category_id, "カテゴリー 必須" %><br />
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {class:"genre-select"}) %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "保存する", class: :form__btn  %>
-  </div>
-<% end %>
+      <div class="field">
+        <%= f.label :title, "タイトル" %><br />
+        <%= f.text_field :title, id:"article_title" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :images, "投稿画像" %><br />
+        <%= f.file_field :images, name: 'post[images][]', id: 'post_image', multiple: true %>
+      </div>
+      <div id="image-list"></div>
+      <% if @post.images.present? %>
+        <p>現在登録されている画像（削除するものはチェックしてください）</p>
+        <% @post.images.each do |image| %>
+          <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+          <%= image_tag image, size:"200x200", class: 'images form-img' %> <br>
+        <% end %>
+      <% end %>
+      
+   
+
+      <div class="field">
+        <%= f.label :article_text, "記事テキスト" %><br />
+        <%= f.text_area :article_text, class: :form__text, id:"prototype_catch_copy" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "保存する", class: :form__btn  %>
+      </div>
+    <% end %>

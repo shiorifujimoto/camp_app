@@ -18,5 +18,11 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
-<%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post%>
-<%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post%>
+<div class="link_btn">
+  <div class="link_container">
+    <%= link_to 'FacebookでLog in', user_facebook_omniauth_authorize_path, method: :post, class: "btn-flat-vertical-border btn-facebook" %>
+    <br>
+    <%= link_to 'GoogleでLog in', user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn-flat-vertical-border btn-google " %>
+  </div>
+</div>
+
