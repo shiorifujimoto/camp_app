@@ -12,14 +12,15 @@ class User < ApplicationRecord
  
   with_options presence: true do
     validates :nickname    , length: { maximum: 10, too_long: "最大%{count}文字まで使えます"}
-    validates :password    , format: { with: VALID_PASSWORD_REGEX , message: "英数字で6文字以上を入力してください"}
+    validates :password    , format: { with: VALID_PASSWORD_REGEX , message: "を半角英数字を両方
+      含めた6文字以上を入力してください"}
     validates :email       , uniqueness: true
-    with_options format: { with: VALID_NAME_REGEX,  message: "ひらがな、カナ、漢字のみが使えます" } do
+    with_options format: { with: VALID_NAME_REGEX,  message: "はひらがな、カナ、漢字のみが使えます" } do
       validates :last_name
       validates :first_name
     end
   end
-  validates :profile       , length: { maximum: 50, too_long: "最大%{count}文字まで使えます"}, allow_nil: true
+  validates :profile       , length: { maximum: 50, too_long: "は最大%{count}文字まで使えます"}, allow_nil: true
 
   def self.from_omniauth(auth)
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create

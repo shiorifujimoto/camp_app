@@ -6,7 +6,7 @@ FactoryBot.define do
       person { Gimei.name }
     end
 
-    nickname   {'キャンパー多田'}
+    nickname   {'山岳キャンパー'}
     last_name  {person.last.kanji}
     first_name {person.first.kanji}
     email      {Faker::Internet.free_email}
