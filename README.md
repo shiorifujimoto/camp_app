@@ -38,6 +38,7 @@
 | title        | string     | null: false                    |
 | article_text | text       | null: false                    |
 | status_id    | integer    | null: false                    |
+| category_id  | integer    | null: false                    |
 
 ### Association
 
@@ -49,7 +50,7 @@
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| name     | string | null: false |
+| tag_name | string | null: false |
 
 ### Association
 

@@ -9,6 +9,7 @@
 
   <% if user_signed_in? && %>
     <% if @post_user %>
+      <h2><%= "#{current_user.nickname}さんの投稿一覧"%></h2>
       <% @posts.each do |post| %>
         <% if post.user_id == current_user.id %>
           <div class="post_wrap">
@@ -28,8 +29,8 @@
                   </li>
               
                   <div class="date">
-                    <div class="image-month">12</div>
-                    <div class="image-year">2020</div>
+                    <div class="image-month"><%= post.created_at.month %></div>
+                    <div class="image-year"><%= post.created_at.year %></div>
                   </div>
                 </div>  
               </div>
@@ -41,8 +42,12 @@
     <% else %>
       <p>まだ投稿していません</p>
         <h1>みんなの投稿</h1>
+        <%= render partial: 'posts/posts', locals: { posts: @posts } %>
     <% end %>  
   <% else %>
     <%# ログインしていない %>
-    <h1>みんなの投稿</h1>
+    <h1>是非登録/ログインして素敵なキャンプライフの足掛かりに！</h1>
+
+    <h2>みんなの投稿</h2>
+    <%= render partial: 'posts/posts', locals: { posts: @posts } %>
   <% end %>

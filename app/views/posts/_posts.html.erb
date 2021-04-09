@@ -1,5 +1,5 @@
 <div class="post_wrap">
-  <% @posts.each do |post| %>
+  <% posts.each do |post| %>
     <% if post.status_id == 2 %>
       <div class="card">
         <div class="user_card">
@@ -17,8 +17,8 @@
               <% end %>
             </li>
             <div class="date">
-              <div class="image-month">12</div>
-              <div class="image-year">2020</div>
+              <div class="image-month"><%= post.created_at.month %></div>
+              <div class="image-year"><%= post.created_at.year %></div>
             </div>
           </div>
         </div>
