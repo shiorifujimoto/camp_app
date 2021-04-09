@@ -60,6 +60,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'active_hash'
 gem 'gimei'
+gem 'rails-i18n'
 
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
@@ -68,3 +69,4 @@ gem 'omniauth', '~>1.9.1'
 
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
+
