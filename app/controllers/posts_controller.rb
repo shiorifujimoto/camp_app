@@ -43,8 +43,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = "deleteしました"
-    redirect_to root_path
+    redirect_to root_path, notice:"削除しました"
+
   end
   
   def tag_search
