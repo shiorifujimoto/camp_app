@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       bypass_sign_in(@user)
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id), notice: '編集しました'
     else
       render :edit
     end
