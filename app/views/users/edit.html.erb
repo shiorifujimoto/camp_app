@@ -1,0 +1,84 @@
+<div class='account-page' id='account-page'>
+  <div class='account-page__inner clearfix'>
+    
+      <h2>アカウントの編集</h2>
+
+    <div class='account-page__inner--right user-form'>
+      <%= form_with model: @user, local: true do |f|%>
+        
+        <%= render 'shared/error_messages', model: f.object %>
+        <div class="image-element">
+          <% if @user.avatar == nil %>
+            <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img',id: :user_avatar_image),edit_user_path(@user.id) %>
+            <p>アイコン未登録</p>  
+          <% else %>
+            <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon',id: :user_avatar_image %>
+          <% end %>
+        </div>
+        <div id="image-list"></div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :avatar, "アバター" %>
+          </div>
+          <div class='field-input'>
+            <%= f.file_field :avatar,id: 'avatar_image' %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :nickname%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :nickname, autofocus: true%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :last_name%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :last_name, autofocus: true%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :first_name%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :first_name, autofocus: true%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :profile%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :profile, class: :user_profile_form, autofocus: true%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :email%>
+          </div>
+          <div class='field-input'>
+            <%= f.email_field :email%>
+          </div>
+        </div>
+       
+        
+     
+  <div class="field">
+    <%= f.label :password %> <i>(登録済みのパスワード)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+    
+
+        <div class='actions'>
+          <%= f.submit "Update", class: 'btn'%>
+        </div>
+      <% end %>
+      <%= link_to "マイページに戻る", :back, class: 'link_btn'%>
+    </div>
+  </div>
+</div>

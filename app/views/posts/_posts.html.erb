@@ -3,8 +3,13 @@
     <% if post.status_id == 2 %>
       <div class="card">
         <div class="user_card">
-          <%= link_to image_tag("user_icon.png", class: :icon), root_path %>
-          <%= link_to "by #{post.user.nickname}", root_path, class: :user %>
+          <% if post.user.avatar == nil %>
+            <%= link_to image_tag("user_icon.png", class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
+          <% else %> 
+            <%= link_to image_tag(post.user.avatar,class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
+          <% end%>  
+            <%= link_to "by #{post.user.nickname}", user_path(post.user_id), class: :user %>
+          
         </div>
 
         <div class="article_card">
