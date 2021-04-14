@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update,:destroy]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -13,8 +13,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.valid?
       @post.save
-      flash[:success] = "作成しました"
-      return redirect_to post_path(@post.id)
+      
+      return redirect_to post_path(@post.id), notice: '投稿しました'
     else
       render :new
     end
@@ -35,13 +35,17 @@ class PostsController < ApplicationController
       end
     end
     if @post.update(post_params)
-      flash[:success] = "編集しました"
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: '編集しました'
     else
       render :edit
     end
   end
 
+  def destroy
+    @post.destroy
+    redirect_to root_path, notice:"削除しました"
+  end
+  
   def tag_search
     return nil if params[:keyword] == ""
     tag = Tag.where(['name LIKE ?',"%#{params[:keyword]}%"] )

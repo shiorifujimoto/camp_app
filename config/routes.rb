@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   root to: 'users#index' 
   resources :users, only: [:index, :new, :show, :edit, :update]  
-  resources :posts, only: [:index, :new, :create, :show, :edit, :update] do
+  resources :posts do
     collection do
       get 'tag_search'
     end
