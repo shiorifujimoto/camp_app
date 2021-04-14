@@ -74,6 +74,14 @@ body{
   display: flex;
   justify-content: center;
 }
+/* flash */
+p.alert.alert-notice {
+  text-align: center;
+  background-color: wihte;
+  background-color: #ffff;
+  margin: 0 auto;
+  padding: 10px;
+}
 
 /* ヘッダー */
 
@@ -142,6 +150,7 @@ body{
 }
 
 /* メイン */
+
 .container{
 /* width: 90%;
 margin: 10px; */

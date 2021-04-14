@@ -21,10 +21,10 @@
     </div>  
   </div>
 
-  <%if user_signed_in? && current_user.id == @post.user.id %>
+  <%if user_signed_in? && current_user.id == @post.user_id %>
     <div class="btn-wrap">
       <%= link_to "編集", edit_post_path(@post.id), class: :link_btn %>
-      <%= link_to "削除", root_path, class: :link_btn %>
+      <%= link_to "削除", post_path(@post.id),method: :delete, class: :link_btn %>
     </div>
   <% end %>
 </div>
