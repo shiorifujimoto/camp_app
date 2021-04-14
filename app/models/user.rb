@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-  has_many :sns_credentials
-  has_many :posts
+  has_many :sns_credentials, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_one_attached :avatar
   
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}\z/i.freeze
   VALID_NAME_REGEX = /\A[ぁ-んァ-ヶー一-龠]+\z/u.freeze
@@ -14,7 +15,7 @@ class User < ApplicationRecord
     validates :nickname    , length: { maximum: 10, too_long: "最大%{count}文字まで使えます"}
     validates :password    , format: { with: VALID_PASSWORD_REGEX , message: "を半角英数字を両方
       含めた6文字以上を入力してください"}
-    validates :email       , uniqueness: true
+    validates :email       , uniqueness: { case_sensitive: true }
     with_options format: { with: VALID_NAME_REGEX,  message: "はひらがな、カナ、漢字のみが使えます" } do
       validates :last_name
       validates :first_name
@@ -34,5 +35,18 @@ class User < ApplicationRecord
       sns.save
     end
     { user: user, sns: sns }
+  end
+
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 end
