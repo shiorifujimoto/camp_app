@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :sns_credentials, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_one_attached :avatar
   
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}\z/i.freeze
