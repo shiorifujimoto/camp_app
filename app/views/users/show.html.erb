@@ -1,0 +1,62 @@
+<div class="user__wrapper">
+  <h2 class="page-heading">
+    <%= "#{@user.nickname}さんのマイページ"%>
+  </h2>
+  <table class="table">
+    <div class="temporary">
+    <% if @user.avatar == nil %>
+      <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img'),edit_user_path(@user.id) %>
+      <p>アイコン未登録</p>  
+    <% else %>
+    
+      <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon' %>
+    <% end %>
+    </div>
+    <tbody>
+      <tr>
+        <th class="table__col1">ニックネーム</th>
+        <td class="table__col2"><%= @user.nickname %></td>
+      </tr>
+      <tr>
+        <th class="table__col1">自己紹介</th>
+        <td class="table__col2"><%= @user.profile %></td>
+      </tr>
+      <%if user_signed_in? && current_user.id == @user.id %>
+      <tr>
+        <th class="table__col1">氏名</th>
+        <td class="table__col2"><%= "#{@user.last_name} #{@user.first_name}" %></td>
+      </tr>
+      <tr>
+        <th class="table__col1">email</th>
+        <td class="table__col2"><%= @user.email %></td>
+      </tr>
+      <%end%>
+    </tbody>
+    
+  </table>
+  <% if user_signed_in? && current_user.id == @user.id %>
+      <div class="user_edit_btn">
+        <%= link_to 'アカウント編集', edit_user_path(@user.id),class:'link_btn' %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'link_btn'%>
+      </div>
+  <% end %>
+  <h2 class="page-heading">
+    <%= "#{@user.nickname}さんの投稿一覧"%>
+  </h2>
+  <%# like.count多い順 %>
+
+  <div class="post-partial">
+    <% @posts.each do |post| %>
+      <div class="desplay">
+        <% post.images.each do |image| %>
+          <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+        <% end %>
+        <div class="date">
+          <div class="image-month"><%= post.created_at.month %></div>
+          <div class="image-year"><%= post.created_at.year %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

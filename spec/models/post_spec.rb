@@ -35,14 +35,12 @@ RSpec.describe Post, type: :model do
       it 'article_textが空の場合、投稿できない' do
         @post.article_text = nil
         @post.valid?
-        binding.pry
         expect(@post.errors.full_messages).to include("記事テキストを入力してください")
       end
 
       it 'article_textが301文字以上の場合、投稿できない' do
         @post.article_text = "テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！テストテキストです！＿"
         @post.valid?
-        binding.pry
         expect(@post.errors.full_messages).to include("記事テキストは300文字以内で入力してください")
       end
 

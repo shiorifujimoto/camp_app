@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     end
     if @post.update(post_params)
       flash[:success] = "編集しました"
-      redirect_to posts_url
+      redirect_to post_path(@post.id)
     else
       render :edit
     end

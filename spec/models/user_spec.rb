@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザ新規登録' do
     context '正常系' do
-      it 'nickname,last_name,first_name,email,password,assword_confirmation,profileが存在すれば場合、登録できる' do
+      it 'nickname,last_name,first_name,email,password,password_confirmation,profileが存在すれば場合、登録できる' do
         expect(@user).to be_valid
       end
 
@@ -90,7 +90,6 @@ RSpec.describe User, type: :model do
       it 'passwordが半角英字が含まれていない場合、登録できない' do
         @user.password = '123456'
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include("パスワードを半角英数字を両方\n      含めた6文字以上を入力してください")
       end
 
@@ -107,5 +106,5 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("プロフィールは最大50文字まで使えます")
       end
     end
-  end  
+  end
 end

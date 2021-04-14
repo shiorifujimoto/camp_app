@@ -107,9 +107,11 @@ body{
   background: #c9a890;
   box-shadow:  5px 5px 5px #b99b84,
                -5px -5px 5px #d9b59c;
+               
 }
-.icon{
+.gr_icon{
   width: 40px;
+  height: 40px;
 }
 .nav__btn{
   display: inline-block;
@@ -145,7 +147,10 @@ body{
 margin: 10px; */
 position: relative;
 }
-
+.post_ava_icon{
+  width: 80px;
+  height: 80px;
+}
 /*--- user登録 */
 .user_profile_form{
   height: 4em;
@@ -188,7 +193,86 @@ position: relative;
 }  
 .
 /*---end / user登録 */
+/* ユーザーページ */
+.user__wrapper{
+  min-height: calc(100vh - 161px);
+}
+.table{
+  border-collapse: collapse;
+  margin: 10px;
+}
 
+.ava-icon,
+.new-ava-icon{
+  position:relative;
+  overflow: hidden;
+  border-radius:50%;
+  margin: 10px;
+}
+
+.show_ava_icon,
+.new-ava-icon {
+  width: 200px;
+  height: 200px;
+}
+
+  .temporary {
+    position:relative;
+    margin: 20px;
+  }
+  .temporary_img{
+    
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .temporary p{
+    position: absolute;
+    top: 68%;
+    left: 15%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+    margin: auto;
+    color: #ffffff;
+    font-size: 0.8em
+  }
+  .user_icon_show img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    height:100%;
+  }
+}
+
+.table{
+  border-color: var(--footer_color);
+}
+.table__col1{
+  text-align: left;
+  font-weight: bold;
+  background: #fafafa;
+  border-collapse: collapse;
+  border: 1px solid;
+ 
+  width: 30%;
+  padding: 8px;
+}
+.table__col2{
+  text-align: left;
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 70%;
+  padding: 16px 8px;
+
+}
+.user__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+/*  ---end / ユーザーページ*/
 .card {
   width: 100%;
   margin-top: 10px;
@@ -202,9 +286,28 @@ position: relative;
 }
 .article_card {
   position: relative;
-  }
+}
+.user_edit_btn{
+  display: flex;
+  justify-content: center;
+}
+.user_edit_btn a:first-child{
+  margin-right: 20px;
+}
+.user_edit_btn a{
+  display: inline-block;
+  width: 300px;
+  text-align: center;
+  align-items: center;
+}
+.user_edit_btn a:hover{
+  background-color: pink;
+}
 .post-partial{
 width: 100%;
+}
+.desplay {
+  position: relative;
 }
 .date {
   position: absolute;
