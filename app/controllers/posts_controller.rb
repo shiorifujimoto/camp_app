@@ -13,14 +13,14 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.valid?
       @post.save
-      
-      return redirect_to post_path(@post.id), notice: '投稿しました'
+      redirect_to post_path(@post.id), notice: '投稿しました'
     else
       render :new
     end
   end
 
   def show
+    @like = Like.new
   end
 
   def edit
@@ -44,7 +44,6 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to root_path, notice:"削除しました"
-
   end
   
   def tag_search

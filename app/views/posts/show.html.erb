@@ -20,7 +20,9 @@
       <%= @post.article_text %>
     </div>  
   </div>
-
+  <div id="likes_buttons_<%= @post.id %>">
+    <%= render partial: 'layouts/likes', locals: { post: @post } %>
+  </div>
   <%if user_signed_in? && current_user.id == @post.user_id %>
     <div class="btn-wrap">
       <%= link_to "編集", edit_post_path(@post.id), class: :link_btn %>
