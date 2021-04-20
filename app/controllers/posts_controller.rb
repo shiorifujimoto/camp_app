@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
   def show
     @like = Like.new
+    @favorite = Favorite.new
   end
 
   def edit
