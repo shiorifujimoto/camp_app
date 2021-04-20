@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     get 'tag_search', on: :member
     resources :likes, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
   
 end
