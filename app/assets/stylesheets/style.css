@@ -292,6 +292,9 @@ position: relative;
 .card:first-child{
   margin-top: 0px;
 }
+.sub__container{
+  position: relative;
+}
 
 .user_card{
   margin: 10px;
@@ -342,6 +345,19 @@ width: 100%;
     border-radius: 80% 30% 50% 50%/50%;
     padding: 30px;
   }
+
+.count_icon{
+  width: 40px;
+
+}
+
+.count_card{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
 
 /* .tag_ribbon {
   display: inline-block;

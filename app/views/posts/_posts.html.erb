@@ -10,15 +10,8 @@
           <% end%>  
           <%= link_to "by #{post.user.nickname}", user_path(post.user_id), class: :user %>
           
-          <div id="likes_card">
-            <% if current_user.already_liked?(post) %>
-                <i class="fas fa-heart"></i>
-            <% elsif %>
-              <i class="far fa-heart"></i>
-            
-            <% end %>
-            <%= post.likes.count %> 
-          </div>
+          <%= render partial: 'layouts/count', locals: { post: post } %>
+
         </div>
 
         <div class="article_card">
