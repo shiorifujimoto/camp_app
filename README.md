@@ -46,48 +46,24 @@
 - has_many   :tags
 - has_many   :post_tags
 
-## tags テーブル
+## likes テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| tag_name | string | null: false |
-
-### Association
-
-- has_many :posts
-- has_many :post_tags
-
-## post_tag_relations テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| post   | references | null: false, foreign_key: true |
-| tag    | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| post    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :post
-- belongs_to :tag
+- belongs_to :user
+- has_many   :tags
 
 ## comments テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
-| comment | text       | null: false                    |
-
-### Association
-
-- belongs_to :user
-- belongs_to :post
-
-## likes テーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
+| post    | references | null: false, foreign_key: true |
 
 ### Association
 

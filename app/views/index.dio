@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="SYqouDSUOeYf3AwJR8Iw" name="ページ1">
-        <mxGraphModel dx="1076" dy="567" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="562" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -67,7 +67,7 @@
                 <mxCell id="45" value="user ( references型 )" style="text;strokeColor=none;fillColor=none;spacingLeft=7;spacingRight=2;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=13;spacing=5;" parent="38" vertex="1">
                     <mxGeometry y="26" width="270" height="34" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" value="image ( ActiveStorageで実装)" style="text;strokeColor=none;fillColor=none;spacingLeft=7;spacingRight=2;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=13;spacing=5;" parent="38" vertex="1">
+                <mxCell id="48" value="images ( ActiveStorageで実装)" style="text;strokeColor=none;fillColor=none;spacingLeft=7;spacingRight=2;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=13;spacing=5;" parent="38" vertex="1">
                     <mxGeometry y="60" width="270" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="39" value="title ( string型, NOT NULL, unique: true)" style="text;strokeColor=none;fillColor=none;spacingLeft=7;spacingRight=2;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=13;spacing=5;" parent="38" vertex="1">

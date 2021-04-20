@@ -8,9 +8,10 @@
       <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img'),edit_user_path(@user.id) %>
       <p>アイコン未登録</p>  
     <% else %>
-    
       <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon' %>
     <% end %>
+    <div>投稿記事件数</div>
+    <div>お気に入り件数</div>
     </div>
     <tbody>
       <tr>
@@ -54,6 +55,10 @@
         <div class="date">
           <div class="image-month"><%= post.created_at.month %></div>
           <div class="image-year"><%= post.created_at.year %></div>
+        </div>
+        <div class="right_pop">
+
+          <%= render partial: 'layouts/likes_no_count', locals: { post: post } %>
         </div>
       </div>
     <% end %>

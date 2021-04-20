@@ -12,12 +12,25 @@
     </div>
 
     <div class="user_card">
-      <%= link_to image_tag("user_icon.png", class: :icon), user_path(@post.user_id) %>
+      <% if @post.user.avatar == nil %>
+        <div class="temporary">
+          <%= link_to image_tag("user_icon.png", class: 'post_ava_icon user_icon_show '),edit_user_path(@user.id) %>
+          <p>アイコン未登録</p>
+        </div>   
+      <% else %>
+        <%= image_tag  @post.user.avatar,class: 'ava-icon post_ava_icon' %>
+      <% end %>
       <%= link_to "by #{@post.user.nickname}", user_path(@post.user_id), class: :card__user %>
+      
+      <%= render partial: 'layouts/likes_count', locals: { post: @post } %>
+      
     </div>
+
     <div class="post_card">
-      <%= @post.title %>
-      <%= @post.article_text %>
+      <%= "タイトル：#{@post.title}" %>
+      <div class="article_text">
+        <%= @post.article_text %>
+      </div>
     </div>  
   </div>
 

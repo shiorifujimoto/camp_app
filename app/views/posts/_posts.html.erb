@@ -8,8 +8,17 @@
           <% else %> 
             <%= link_to image_tag(post.user.avatar,class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
           <% end%>  
-            <%= link_to "by #{post.user.nickname}", user_path(post.user_id), class: :user %>
+          <%= link_to "by #{post.user.nickname}", user_path(post.user_id), class: :user %>
           
+          <div id="likes_card">
+            <% if current_user.already_liked?(post) %>
+                <i class="fas fa-heart"></i>
+            <% elsif %>
+              <i class="far fa-heart"></i>
+            
+            <% end %>
+            <%= post.likes.count %> 
+          </div>
         </div>
 
         <div class="article_card">
