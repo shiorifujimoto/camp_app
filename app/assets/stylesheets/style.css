@@ -491,6 +491,10 @@ width: 100%;
 #image-list, #before_image{
   width: 50%;
 }
+/* サイドバー */
+.sidebar{
+  display: none;
+}
 /* フッター */
 
 footer{  
@@ -539,6 +543,24 @@ object-fit: cover;
     max-width: 90%;
     margin: 0 auto;
   }
+  .user__wrapper{
+    width: 70%;
+  }
+  .sidebar{
+    width: 30%;
+    display: block;
+  }
+  
+  .favorites-wrap{
+    width: 100%;
+    margin-left: 20px;
+    border: 2px solid;
+
+  }
+  .fav{
+    width: 100%;
+    height: auto;
+  }
   .post_wrap{
     display: flex;
     justify-content: space-between;
@@ -550,8 +572,13 @@ object-fit: cover;
   }
 
   .card{
-    width: 50%;
-    margin:20px 5px 0px 5px;
+    /* width: 50%; */
+    position: relative;
+    margin:53px 5px 0px 5px;
+  }
+  .fav_user_card{
+    position: absolute;
+    top: -50px;
   }
   
   .date {
@@ -571,9 +598,11 @@ object-fit: cover;
   .page-heading {
     font-size: 20px;
   }
- 
-  .card__title {
+  .fav_title{
     font-size: 18px;
+    position: absolute;
+    top: -25px;
+    left: 100px;
   }
   .card__summary {
     font-size: 14px;

@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :favorites, dependent: :destroy
   has_many_attached :images, dependent: :destroy
 

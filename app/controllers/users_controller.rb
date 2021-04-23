@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :edit, :update]
+  before_action :set_user, only:[:show, :edit, :update]
   before_action :identification_user, only:[:edit, :update]
-  before_action :set_user, only:[:show, :edit, :update] 
+  before_action :set_favorites, only:[:show]
   def index
     @posts = Post.all.order(created_at: :desc)
     current
@@ -43,5 +44,9 @@ class UsersController < ApplicationController
 
   def identification_user
     redirect_to root_path if current_user == @user
+  end
+
+  def set_favorites
+    @favorites = Post.where(id: @user.favorited_posts.ids, status_id: 2)
   end
 end
