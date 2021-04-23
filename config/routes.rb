@@ -6,12 +6,7 @@ Rails.application.routes.draw do
   root to: 'users#index' 
   resources :users, only: [:index, :new, :show, :edit, :update]  
   resources :posts do
-    collection do
-      get 'tag_search'
-    end
-    get 'tag_search', on: :member
     resources :likes, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
   end
-  
 end

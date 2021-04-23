@@ -1,48 +1,49 @@
-<% if user_signed_in?%>
-  <%# いいねカウント %>
-  <div id="likes_buttons_<%= post.id %>">
-  <% if current_user.already_liked?(post) %>
-    <%= link_to post_like_path(post), method: :delete do %>
-      <%= image_tag "like_icon.png",class: 'count_icon' %>
-    <% end %>
-  <% else %>
-    <%= link_to post_likes_path(post), method: :post do %>
-      <%= image_tag "not_like_icon.png",class: 'count_icon' %>
-    <% end %>
-  <% end %>
-  <%= post.likes.count %>
-  <%# お気に入りカウント %>
-  <div id="favorites_buttons_<%= post.id %>">
-  
-  <% if current_user.already_favorited?(post) %>
-    <%= link_to post_favorite_path(post), method: :delete do %>
-       <%= image_tag "favorite_icon.png",class: 'count_icon' %>
-    <% end %>
-  <% else %>
-    <%= link_to post_favorites_path(post), method: :post do %>
-      <%= image_tag "not_favorite_icon.png",class: 'count_icon' %>
-    <% end %>
-  <% end %>
-  <%= post.favorites.count %>
-  </div>
-<% else %>
-  <%# ログインしてない場合のいいね表示  %>
-  <div id="likes_card">
-    <% if post.likes == nil %>
-      <%= image_tag "not_like_icon.png",class: 'count_icon' %>
-    <% elsif %>
-      <%= image_tag "like_icon.png",class: 'count_icon' %>
+<div class="count_container">
+  <% if user_signed_in?%>
+    <%# いいねカウント %>
+    <div id="likes_buttons_<%= post.id %>">
+    <% if current_user.already_liked?(post) %>
+      <%= link_to post_like_path(post.id,post.likes.ids), method: :delete do %>
+        <%= image_tag "like_icon.png",class: 'count_icon' %>
+      <% end %>
+    <% else %>
+      <%= link_to post_likes_path(post), method: :post do %>
+        <%= image_tag "not_like_icon.png",class: 'count_icon' %>
+      <% end %>
     <% end %>
     <%= post.likes.count %>
-  </div>
-  <%# ログインしてない場合のお気に入り表示  %>
-  <div id="favorites_card">
-    <% if post.favorites == nil %>
-      <%= image_tag "not_favorite_icon.png",class: 'count_icon' %>
-    <% elsif %>
-      <%= image_tag "favorite_icon.png",class: 'count_icon' %>
+    <%# お気に入りカウント %>
+    <div id="favorites_buttons_<%= post.id %>">
+    
+    <% if current_user.already_favorited?(post) %>
+      <%= link_to post_favorite_path(post.id,post.favorites.ids), method: :delete do %>
+        <%= image_tag "favorite_icon.png",class: 'count_icon' %>
+      <% end %>
+    <% else %>
+      <%= link_to post_favorites_path(post), method: :post do %>
+        <%= image_tag "not_favorite_icon.png",class: 'count_icon' %>
+      <% end %>
     <% end %>
     <%= post.favorites.count %>
-  </div>
-<% end %>
-
+    </div>
+  <% else %>
+    <%# ログインしてない場合のいいね表示  %>
+    <div id="likes_card">
+      <% if post.likes == nil %>
+        <%= image_tag "not_like_icon.png",class: 'count_icon' %>
+      <% elsif %>
+        <%= image_tag "like_icon.png",class: 'count_icon' %>
+      <% end %>
+      <%= post.likes.count %>
+    </div>
+    <%# ログインしてない場合のお気に入り表示  %>
+    <div id="favorites_card">
+      <% if post.favorites == nil %>
+        <%= image_tag "not_favorite_icon.png",class: 'count_icon' %>
+      <% elsif %>
+        <%= image_tag "favorite_icon.png",class: 'count_icon' %>
+      <% end %>
+      <%= post.favorites.count %>
+    </div>
+  <% end %>
+</div>

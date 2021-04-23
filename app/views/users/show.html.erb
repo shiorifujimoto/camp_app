@@ -1,17 +1,27 @@
 <div class="user__wrapper">
   <h2 class="page-heading">
-    <%= "#{@user.nickname}さんのマイページ"%>
+    <% if current_user == @user %>
+      <%= "#{@user.nickname}さんのマイページ"%>
+    <% else %>
+      <%= "#{@user.nickname}さんのページ"%>  
+    <% end %>
   </h2>
   <table class="table">
     <div class="temporary">
-    <% if @user.avatar == nil %>
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon' %>
+    <% else %>
+      
       <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img'),edit_user_path(@user.id) %>
       <p>アイコン未登録</p>  
-    <% else %>
-      <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon' %>
     <% end %>
-    <div>投稿記事件数</div>
-    <div>お気に入り件数</div>
+    <div class="position_right">
+      <div class="posts_count">
+        <%= "投稿記事件数:#{@user.posts.count}件" %>
+      </div>
+      <div class="favorites_count">
+        <%= "お気に入り件数:#{@user.favorites.count}件" %>
+      </div>
     </div>
     <tbody>
       <tr>
@@ -46,22 +56,23 @@
   </h2>
   <%# like.count多い順 %>
 
-  <div class="post-partial">
     <% @posts.each do |post| %>
-      <div class="desplay">
-        <% post.images.each do |image| %>
-          <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
-        <% end %>
-        <div class="date">
-          <div class="image-month"><%= post.created_at.month %></div>
-          <div class="image-year"><%= post.created_at.year %></div>
-        </div>
-        <div class="right_pop">
+      <div class="post-partial article_card">
+        <div class="desplay">
+          <% post.images.each do |image| %>
+            <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+          <% end %>
+          <div class="date">
+            <div class="image-month"><%= post.created_at.month %></div>
+            <div class="image-year"><%= post.created_at.year %></div>
+          </div>
+          <div class="right_pop">
 
-          <%= render partial: 'layouts/count', locals: { post: post } %>
+            <%= render partial: 'layouts/count', locals: { post: post } %>
+          </div>
         </div>
       </div>
     <% end %>
-  </div>
+  
 
 </div>
