@@ -1,8 +1,0 @@
-<div id="likes_card">
-  <% if current_user.already_liked?(post) %>
-  <i class="fas fa-heart"></i>
-  <% elsif %>
-  <i class="far fa-heart"></i>
-  <% end %>
-  <%= post.likes.count %>
-</div>

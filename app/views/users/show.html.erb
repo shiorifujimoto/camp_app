@@ -1,67 +1,112 @@
-<div class="user__wrapper">
-  <h2 class="page-heading">
-    <%= "#{@user.nickname}さんのマイページ"%>
-  </h2>
-  <table class="table">
-    <div class="temporary">
-    <% if @user.avatar == nil %>
-      <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img'),edit_user_path(@user.id) %>
-      <p>アイコン未登録</p>  
-    <% else %>
-      <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon' %>
-    <% end %>
-    <div>投稿記事件数</div>
-    <div>お気に入り件数</div>
-    </div>
-    <tbody>
-      <tr>
-        <th class="table__col1">ニックネーム</th>
-        <td class="table__col2"><%= @user.nickname %></td>
-      </tr>
-      <tr>
-        <th class="table__col1">自己紹介</th>
-        <td class="table__col2"><%= @user.profile %></td>
-      </tr>
-      <%if user_signed_in? && current_user.id == @user.id %>
-      <tr>
-        <th class="table__col1">氏名</th>
-        <td class="table__col2"><%= "#{@user.last_name} #{@user.first_name}" %></td>
-      </tr>
-      <tr>
-        <th class="table__col1">email</th>
-        <td class="table__col2"><%= @user.email %></td>
-      </tr>
-      <%end%>
-    </tbody>
+<div class="flex">
+  <div class="user__wrapper">
+    <h2 class="page-heading">
+      <% if current_user == @user %>
+        <%= "#{@user.nickname}さんのマイページ"%>
+      <% else %>
+        <%= "#{@user.nickname}さんのページ"%>  
+      <% end %>
+    </h2>
     
-  </table>
-  <% if user_signed_in? && current_user.id == @user.id %>
-      <div class="user_edit_btn">
-        <%= link_to 'アカウント編集', edit_user_path(@user.id),class:'link_btn' %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'link_btn'%>
-      </div>
-  <% end %>
-  <h2 class="page-heading">
-    <%= "#{@user.nickname}さんの投稿一覧"%>
-  </h2>
-  <%# like.count多い順 %>
-
-  <div class="post-partial">
-    <% @posts.each do |post| %>
-      <div class="desplay">
-        <% post.images.each do |image| %>
-          <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
-        <% end %>
-        <div class="date">
-          <div class="image-month"><%= post.created_at.month %></div>
-          <div class="image-year"><%= post.created_at.year %></div>
+    <div class="temporary">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon' %>
+      <% else %>
+        <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img'),edit_user_path(@user.id) %>
+        <p>アイコン未登録</p>  
+       <% end %>
+      <div class="position_right">
+        <div class="posts_count">
+          <%= "投稿記事件数:#{@user.posts.count}件" %>
         </div>
-        <div class="right_pop">
-
-          <%= render partial: 'layouts/likes_no_count', locals: { post: post } %>
+        <div class="favorites_count">
+          <%= "お気に入り件数:#{@user.favorites.count}件" %>
+        </div>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="table__col1">ニックネーム</th>
+            <td class="table__col2"><%= @user.nickname %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">自己紹介</th>
+            <td class="table__col2"><%= @user.profile %></td>
+          </tr>
+          <% if user_signed_in? && current_user.id == @user.id %>
+            <tr>
+              <th class="table__col1">氏名</th>
+              <td class="table__col2"><%= "#{@user.last_name} #{@user.first_name}" %></td>
+            </tr>
+            <tr>
+              <th class="table__col1">email</th>
+              <td class="table__col2"><%= @user.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% if user_signed_in? && current_user.id == @user.id %>
+        <div class="user_edit_btn">
+          <%= link_to 'アカウント編集', edit_user_path(@user.id),class:'link_btn' %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'link_btn'%>
+        </div>
+      <% end %>
+    </div>
+    <h2 class="page-heading">
+      <%= "#{@user.nickname}さんの投稿一覧"%>
+    </h2>
+    <%# like.count多い順 %>
+    <% @posts.each do |post| %>
+      <div class="post-partial article_card">
+        <div class="desplay">
+          <% post.images.each do |image| %>
+            <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+          <% end %>
+          <div class="date">
+            <div class="image-month">
+              <%= post.created_at.month %>
+            </div>
+            <div class="image-year">
+              <%= post.created_at.year %>
+            </div>
+          </div>
+          <div class="right_pop">
+            <%= render partial: 'layouts/count', locals: { post: post } %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
-
+  <div class="sidebar media2 media3">
+    <div class="favorites-wrap">
+      <div class="heading_frame frame1">
+        <div class="heading"><span>お気に入り</span></div>
+      </div>
+      <% @favorites.each do |post| %>
+        <div class="card">
+          <div class="article_card">
+            <%= link_to post.title, post_path(post.id), class: "card__title fav_title" %>
+            <div class="post-partial">
+              <div id="post-<%= post.id %>",class="flex">
+                <% post.images.each do |image| %>
+                  <%= link_to image_tag(image,class: 'post-img fav' ), post_path(post.id) %>
+                <% end %>
+              </div>
+              <div class="date">
+                <div class="image-month"><%= post.created_at.month %></div>
+                <div class="image-year"><%= post.created_at.year %></div>
+              </div>
+            </div>
+          </div>
+          <div class="user_card fav_user_card">
+            <% if post.user.avatar.attached? %>
+              <%= link_to image_tag(post.user.avatar, class: 'ava-icon post_ava_icon ava_icon_absole'), user_path(post.user.id) %>
+            <% else %> 
+              <%= link_to image_tag("user_icon.png", class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
+            <% end%>  
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

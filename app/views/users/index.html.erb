@@ -1,53 +1,52 @@
-<% if user_signed_in? %>
-     <li><%= "#{current_user.nickname}でログイン中" %></li>
-     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-<% else %>
-     <p>ログインしていません</p>
-     <li><%= link_to 'ログイン', new_user_session_path %></li>
-     <li><%= link_to '新規登録', new_user_path %></li>
+<% unless user_signed_in? %>
+     <p>ようこそゲストさん</p>
 <% end %>
 
-  <% if user_signed_in? && %>
-    <% if @post_user %>
-      <h2><%= "#{current_user.nickname}さんの投稿一覧"%></h2>
-      <% @posts.each do |post| %>
-        <% if post.user_id == current_user.id %>
-          <div class="post_wrap">
-            <div class="card">
-              <div class="article_card">
-                <%= link_to "タイトル:「#{post.title}」", post_path(post.id), class: :card__title %>
-                
-                <div class="status">
-                  <%= post.status.name%>
-                </div>
-                
-                <div class="post-partial">
-                  <li id="post-<%= post.id %>">
-                    <% post.images.each do |image| %>
-                      <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
-                    <% end %>
-                  </li>
+<% if user_signed_in? %>
+  <% if @post_user %>
+    <div class="heading_frame frame1">
+      <div class="heading"><span><%= "#{current_user.nickname}さんの投稿一覧"%></span></div>
+    </div>
+    <% @posts.each do |post| %>
+      <% if post.user_id == current_user.id %>
+        <div class="post_wrap">
+          <div class="card">
+            <div class="article_card">
+              <%= image_tag 'post_label.png',class: :post_label %>
+              <%= link_to "タイトル:「#{post.title}」", post_path(post.id), class: :card__title %>
               
-                  <div class="date">
-                    <div class="image-month"><%= post.created_at.month %></div>
-                    <div class="image-year"><%= post.created_at.year %></div>
-                  </div>
-                </div>  
+              <div class="status">
+                <%= post.status.name%>
               </div>
+              
+              <div class="post-partial">
+                <div id="post-<%= post.id %>" class="flex">
+                  <% post.images.each do |image| %>
+                    <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+                  <% end %>
+                </div>
+            
+                <div class="date">
+                  <div class="image-month"><%= post.created_at.month %></div>
+                  <div class="image-year"><%= post.created_at.year %></div>
+                </div>
+              </div>  
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-        
-    <% else %>
-      <p>まだ投稿していません</p>
-        <h1>みんなの投稿</h1>
-        <%= render partial: 'posts/posts', locals: { posts: @posts } %>
-    <% end %>  
+    <% end %>
   <% else %>
-    <%# ログインしていない %>
-    <h1>是非登録/ログインして素敵なキャンプライフの足掛かりに！</h1>
+    <p>まだ投稿していません</p>
+  
+      <%= render partial: 'posts/posts', locals: { posts: @posts } %>
+  <% end %>  
+<% else %>
+  <%# ログインしていない %>
+  <h1>是非登録/ログインして素敵なキャンプライフの足掛かりに！</h1>
 
-    <h2>みんなの投稿</h2>
-    <%= render partial: 'posts/posts', locals: { posts: @posts } %>
-  <% end %>
+  <div class="heading_frame frame1">
+    <div class="heading"><span>ALL POSTS</span></div>
+  </div>
+  <%= render partial: 'posts/posts', locals: { posts: @posts } %>
+<% end %>

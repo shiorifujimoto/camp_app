@@ -8,11 +8,12 @@
         
         <%= render 'shared/error_messages', model: f.object %>
         <div class="image-element">
-          <% if @user.avatar == nil %>
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon',id: :user_avatar_image %>
+          <% else %>
+            
             <%= link_to image_tag("user_icon.png", class: 'user_icon_show temporary_img',id: :user_avatar_image),edit_user_path(@user.id) %>
             <p>アイコン未登録</p>  
-          <% else %>
-            <%= image_tag @user.avatar,class: 'ava-icon show_ava_icon',id: :user_avatar_image %>
           <% end %>
         </div>
         <div id="image-list"></div>

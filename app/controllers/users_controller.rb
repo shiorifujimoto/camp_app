@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show, :edit, :update] 
+  before_action :authenticate_user!, only:[:new, :create, :edit, :update]
+  before_action :set_user, only:[:show, :edit, :update]
+  before_action :identification_user, only:[:edit, :update]
+  before_action :set_favorites, only:[:show]
   def index
     @posts = Post.all.order(created_at: :desc)
     current
@@ -18,8 +21,13 @@ class UsersController < ApplicationController
   end
  
   def show
-    @posts = Post.where(user_id: @user.id)
+    if current_user == @user
+      @posts = Post.where(user_id: @user.id).sort {|a,b| b.liked_users.count <=> a.liked_users.count}
+    else
+      @posts = Post.where(user_id: @user.id,status_id: 2).sort {|a,b| b.liked_users.count <=> a.liked_users.count}
+    end
   end
+
   private
 
   def set_user
@@ -34,4 +42,11 @@ class UsersController < ApplicationController
     @post_user = Post.exists?(user_id: current_user.id) if user_signed_in?
   end
 
+  def identification_user
+    redirect_to root_path if current_user == @user
+  end
+
+  def set_favorites
+    @favorites = Post.where(id: @user.favorited_posts.ids, status_id: 2)
+  end
 end

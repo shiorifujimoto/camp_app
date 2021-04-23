@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update,:destroy]
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :delete]
+  
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :delete]
   def index
     @posts = Post.all.order(created_at: :desc)
   end
@@ -21,6 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @like = Like.new
+    @favorite = Favorite.new
   end
 
   def edit
@@ -60,5 +63,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def correct_user
+    redirect_to root_path if current_user != @post.user
   end
 end
