@@ -45,4 +45,24 @@
     </div>
   <% end %>
   
+  <div class="comments_container">
+    <% if user_signed_in? %>
+      <%= form_with(model: [@post, @comment], local: true) do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        <%= f.text_area :comment, placeholder: "コメントする", rows: "2" %>
+        <%= f.submit "SEND" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+    <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% @comments.each do |comment| %>
+        <p>
+          <strong><%= link_to comment.user.nickname, user_path(comment.user_id) %>：</strong>
+          <%= comment.comment %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 </div>
