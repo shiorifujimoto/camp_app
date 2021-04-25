@@ -12,6 +12,8 @@ ja:
         last_name: '苗字'
         first_name: '名前'
         profile: 'プロフィール'
+      comment:
+        comment: 'コメント'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
