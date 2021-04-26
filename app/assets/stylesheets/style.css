@@ -279,6 +279,11 @@ p.alert.alert-notice {
   text-align: center;
   margin: 0 5px 5px;
 }
+
+.comments_container {
+  margin: 10px;
+}
+
 .comment_input{
   text-align: center;
 }
@@ -287,7 +292,9 @@ p.alert.alert-notice {
   width: 73%;
   height: 100px;
 }
-
+.comment_f {
+  margin-top: 20px;
+}
 .temporary {
   position:relative;
   margin: 20px;
@@ -522,8 +529,14 @@ width: 100%;
 }
 /* フッター */
 
-footer{  
-
+.footerFixed{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 30px; /* ←フッターの高さ指定 */
+}
+footer{
+  position: absolute;
+  bottom: 0;
   width: 100%;
 }
 .footer_wrap {

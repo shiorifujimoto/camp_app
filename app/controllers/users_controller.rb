@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def identification_user
-    redirect_to root_path if current_user == @user
+    redirect_to root_path unless current_user == @user
   end
 
   def set_favorites

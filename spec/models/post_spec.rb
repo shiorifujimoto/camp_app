@@ -6,9 +6,9 @@ RSpec.describe Post, type: :model do
     @post = FactoryBot.build(:post)
   end
 
-  describe '新規投稿機能' do
+  describe '#Create' do
     context '正常系' do
-      it 'title,article_text,suatus_id,category_id,imagesが存在すれば場合、投稿できる' do
+      it 'title,article_text,suatus_id,category_id,imagesが存在すれば、投稿できる' do
         expect(@post).to be_valid
       end
     end

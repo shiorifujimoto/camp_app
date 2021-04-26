@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     if comment.valid?
       comment.save
-      redirect_to post_path(comment.post.id), notice: "コメントを投稿しました。"
+      redirect_to post_path(comment.post.id), notice: 'コメントを投稿しました'
     else
       redirect_to post_path(comment.post.id), flash: { error: comment.errors.full_messages }
     end
