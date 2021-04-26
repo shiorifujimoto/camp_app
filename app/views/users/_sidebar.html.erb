@@ -1,0 +1,36 @@
+<div class="sidebar media2 media3">
+  <div class="favorites-wrap">
+    <div class="heading_frame frame1">
+      <div class="heading"><span>お気に入り</span></div>
+    </div>
+    <% if favorites.empty? %>
+      <p class="aline_center">お気に入り記事登録はありません</p>
+    <% else %>
+      <% favorites.each do |post| %>
+        <div class="card">
+          <div class="article_card">
+            <%= link_to post.title, post_path(post.id), class: "card__title fav_title" %>
+            <div class="post-partial">
+              <div id="post-<%= post.id %>",class="flex">
+                <% post.images.each do |image| %>
+                  <%= link_to image_tag(image,class: 'post-img fav' ), post_path(post.id) %>
+                <% end %>
+              </div>
+              <div class="date">
+                <div class="image-month"><%= post.created_at.month %></div>
+                <div class="image-year"><%= post.created_at.year %></div>
+              </div>
+            </div>
+          </div>
+          <div class="user_card fav_user_card">
+            <% if post.user.avatar.attached? %>
+              <%= link_to image_tag(post.user.avatar, class: 'ava-icon post_ava_icon ava_icon_absole'), user_path(post.user.id) %>
+            <% else %> 
+              <%= link_to image_tag("user_icon.png", class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
+            <% end%>  
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

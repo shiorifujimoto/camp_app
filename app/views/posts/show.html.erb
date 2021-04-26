@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="card">
     <div class="article_card">
       <% @post.images.each do |image| %>
@@ -18,8 +17,7 @@
           
         <% else %>
           <div class="temporary">
-            <%= link_to image_tag("user_icon.png", class: 'post_ava_icon user_icon_show'),user_path(@post.user_id) %>
-            <p>アイコン未登録</p>
+            <%= link_to image_tag("user_icon.png", class: 'post_ava_icon temporary_img ava-icon'),user_path(@post.user_id) %>
           </div> 
         <% end %>
         <%= link_to "by #{@post.user.nickname}", user_path(@post.user_id), class: :card__user %>
@@ -45,4 +43,45 @@
     </div>
   <% end %>
   
+  <div class="comments_container">
+    <div class="heading_frame frame1">
+      <div class="heading"><span>コメント</span></div>
+    </div>
+    <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% @comments.each do |c| %>
+        <div class="flex c_block">
+          <div class="user_card fav_user_card">
+            <% if c.user.avatar.attached? %>
+              <%= link_to image_tag(c.user.avatar, class: 'ava-icon c_ava_icon ava_icon_absole'), user_path(c.user.id) %>
+            <% else %> 
+              <%= link_to image_tag("user_icon.png", class: 'ava-icon c_ava_icon temporary_img'), user_path(c.user.id) %>
+            <% end%>  
+          </div>
+          <div class="c_box">
+            <strong><%= link_to c.user.nickname, user_path(c.user_id) %> : </strong>
+            <%= c.comment %>
+          </div>  
+        </div>
+        <%if user_signed_in? && current_user.id == c.user_id %>
+          <%= link_to 'コメント削除', post_comment_path(@post.id,c.id),method: :delete, class: 'link_btn c_delete_btn' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="comment_f">
+      <% if user_signed_in? %>
+        <%= form_with(model: [@post, @comment], local: true) do |f| %>
+          <%= render 'shared/error_messages', model: f.object %>
+          <div class="comment_input">
+            <%= f.text_area :comment, placeholder: "30文字以内でコメントできます", rows: "2", class: 'comment_text_area' %>
+          </div>
+          <div class="comment_input send_btn">
+            <%= f.submit "コメントする" %>
+          </div>
+        <% end %>
+      <% else %>
+        <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+      <% end %>
+    </div>
+  </div>
 </div>
