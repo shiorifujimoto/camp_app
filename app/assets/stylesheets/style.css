@@ -157,11 +157,11 @@ p.alert.alert-notice {
 .main_inner{
   /* margin-bottom: 30px; */
 }
-.container{
-/* width: 90%;
-margin: 10px; */
-position: relative;
+.container,
+.c_block{
+  position: relative;
 }
+
 .post_ava_icon{
   width: 80px;
   height: 80px;
@@ -244,13 +244,9 @@ position: relative;
 }  
 .
 /*---end / user登録 */
-/* ユーザーページ */
+
 .user__wrapper{
   min-height: calc(100vh - 161px);
-}
-.table{
-  border-collapse: collapse;
-  margin: 10px;
 }
 
 .ava-icon,
@@ -262,42 +258,71 @@ position: relative;
 }
 
 .show_ava_icon,
+.user_icon_show,
 .new-ava-icon {
   width: 200px;
   height: 200px;
 }
-
-  .temporary {
-    position:relative;
-    margin: 20px;
-  }
-  .temporary_img{
-    
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-  .temporary p{
-    position: absolute;
-    top: 68%;
-    left: 15%;
-    transform: translateY(-50%) translateX(-50%);
-    -webkit- transform: translateY(-50%) translateX(-50%);
-    margin: auto;
-    color: #ffffff;
-    font-size: 0.8em
-  }
-  .user_icon_show img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    height:100%;
-  }
+.c_ava_icon{
+  width: 50px;
+  height: 50px;
 }
+
+.c_box{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 69px;
+}
+.c_delete_btn{
+  display: block;
+  text-align: center;
+  margin: 0 5px 5px;
+}
+.comment_input{
+  text-align: center;
+}
+
+.comment_text_area{
+  width: 73%;
+  height: 100px;
+}
+
+.temporary {
+  position:relative;
+  margin: 20px;
+}
+.position-r{
+  position: relative;
+}
+.temporary_img{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.temporary p{
+  position: absolute;
+  top: 68%;
+  left: 107px;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+  margin: auto;
+  color: #ffffff;
+  font-size: 0.8em
+}
+.user_icon_show img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  height:100%;
+}
+
 
 .table{
   border-color: var(--footer_color);
+  border-collapse: collapse;
+  margin: 10px;
 }
 .table__col1{
   text-align: left;
@@ -362,8 +387,8 @@ position: relative;
   width: 50%;
 }
 .user_edit_btn{
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
 }
 .user_edit_btn a:first-child{
   margin-right: 20px;
@@ -555,7 +580,9 @@ object-fit: cover;
     width: 100%;
     margin-left: 20px;
     border: 2px solid;
-
+  }
+  .aline_center{
+    text-align: center;
   }
   .fav{
     width: 100%;
@@ -610,7 +637,12 @@ object-fit: cover;
   .prototype_image{
     width: 100%;
   }
-  .table{
-    width: 100%;
+ 
+  .c_block{
+    height: 57px;
+  }
+  .c_ava_icon{
+    position: absolute;
+    top: 40px;
   }
 }

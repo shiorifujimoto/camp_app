@@ -62,7 +62,7 @@
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| text    | text       | null: false                    |
+| comment | text       | null: false                    |
 | user    | references | null: false, foreign_key: true |
 | post    | references | null: false, foreign_key: true |
 
