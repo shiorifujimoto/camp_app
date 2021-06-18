@@ -1,24 +1,24 @@
 <div class="container">
-  <div class="card">
+  <div class="show_card">
     <div class="article_card">
-      <% @post.images.each do |image| %>
-        <%= link_to image_tag(image,class: 'post-img' ), post_path(@post.id) %>
-      <% end %>
-      <div class="date">
-        <div class="image-month"><%= @post.created_at.month %></div>
-        <div class="image-year"><%= @post.created_at.year %></div>
+      <div class="center">
+        <div id="wide-img"></div>
+        <ul id="list_img">
+          <% @post.images.each do |image| %>
+              <li id="child-img">
+                <%= image_tag image, id: "post-#{image.id}", class: "post-image show__post_image" %>
+              </li>
+          <% end %> 
+        </ul>
       </div>
     </div>
 
     <div class="sub__container">
       <div class="user_card">
         <% if @post.user.avatar.attached? %>
-        <%= link_to image_tag(@post.user.avatar,class: 'ava-icon post_ava_icon'), user_path(@post.user.id) %>
-          
+          <%= link_to image_tag(@post.user.avatar,class: 'ava-icon post_ava_icon'), user_path(@post.user.id) %>
         <% else %>
-          <div class="temporary">
-            <%= link_to image_tag("user_icon.png", class: 'post_ava_icon temporary_img ava-icon'),user_path(@post.user_id) %>
-          </div> 
+          <%= link_to image_tag("user_icon.png", class: 'post_ava_icon temporary_img ava-icon'),user_path(@post.user_id) %>
         <% end %>
         <%= link_to "by #{@post.user.nickname}", user_path(@post.user_id), class: :card__user %>
       </div>  
@@ -29,10 +29,10 @@
     </div>
 
     <div class="post_card">
-      <%= "タイトル：#{@post.title}" %>
-      <div class="article_text">
-        <%= @post.article_text %>
-      </div>
+      <span class="box-title">
+        <%= @post.title %>・<%= @post.created_at.year %>/<%= @post.created_at.month %>/<%= @post.created_at.day %>
+      </span>
+      <p><%= @post.article_text %></p>
     </div>  
   </div>
 
@@ -60,7 +60,7 @@
           </div>
           <div class="c_box">
             <strong><%= link_to c.user.nickname, user_path(c.user_id) %> : </strong>
-            <%= c.comment %>
+            <p><%= c.comment %></p>
           </div>  
         </div>
         <%if user_signed_in? && current_user.id == c.user_id %>

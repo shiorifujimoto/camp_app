@@ -1,0 +1,41 @@
+<div class="inner flex">
+  <div><%= link_to image_tag("logo.png", class: :logo), root_path %></div>
+  
+    <nav class="global_nav">
+      <%#モバイルver %>
+      <ul class="mobile_lists flex">
+        <li><%= link_to image_tag('all_post.png',class: :gr_icon,alt: "全ての投稿"), posts_path %></li>
+        <% if user_signed_in?%>
+          <li><%= link_to image_tag('post_icon.png',class: :gr_icon), new_post_path %></li>
+          <% if current_user.avatar.attached? %>
+            <li><%= link_to image_tag(current_user.avatar,class: 'ava-icon gr_icon'), user_path(current_user.id) %></li>
+          <% else %>
+            <li><%= link_to image_tag("user_icon.png", class: 'ava-icon gr_icon temporary_img gr_icon'), user_path(current_user.id) %></li>
+          <% end %>
+        <% else %>
+          <li class="list"><%= link_to('ログイン', new_user_session_path,{class: "li_link_btn"}) %></li>
+          <li class="list"><%= link_to('新規登録', new_user_path,{class: "li_link_btn"}) %></li>
+        <% end %>
+      </ul>
+
+      <%#PC,タブレットver %>
+      <ul class="tablet-lists flex">
+        <li class="list"><%= link_to image_tag('all_post.png',class: :gr_icon), posts_path %>
+        <%= link_to "みんなの投稿", posts_path, { class: 'test' }  %></li>
+        <li class="list"><%= link_to image_tag("post_icon.png", class: 'post_icon gr_icon' ), new_post_path %><%= link_to "新規投稿", new_post_path %></li>
+        <% if user_signed_in?%>
+          <li class="list"><%= link_to("ログアウト", destroy_user_session_path, {method: :delete, class: "li_link_btn"}) %><li>
+          <% if current_user.avatar.attached? %>
+            
+            <li class="list"><%= link_to image_tag(current_user.avatar,class: 'ava-icon gr_icon'), user_path(current_user.id) %></li>
+          <% else %>
+            <li class="list"><%= link_to image_tag("user_icon.png", class: 'ava-icon gr_icon temporary_img'), user_path(current_user.id) %></li>
+          <% end %>
+          
+        <% else %>
+          <li class="list"><%= link_to('ログイン', new_user_session_path,{class: "li_link_btn"}) %></li>
+          <li class="list"><%= link_to('新規登録', new_user_path,{class: "li_link_btn"}) %></li>
+        <% end %>
+      </ul>
+    </nav>
+</div>

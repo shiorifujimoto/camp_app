@@ -6,19 +6,19 @@
         <% if post.user.avatar.attached? %>
           <%= link_to image_tag(post.user.avatar, class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
         <% else %> 
-          <%= link_to image_tag("user_icon.png", class: 'ava-icon post_ava_icon'), user_path(post.user.id) %>
+          <%= link_to image_tag("user_icon.png", class: 'ava-icon post_ava_icon temporary_img'), user_path(post.user.id) %>
         <% end%>  
-          <%= link_to "by #{post.user.nickname}", user_path(post.user_id), class: :user %>
+          <%= link_to "by #{post.user.nickname}", user_path(post.user_id), class: :user_nickname %>
           
           <%= render partial: 'layouts/count', locals: { post: post } %>
         </div>
    
 
       <div class="article_card">
-        <%= link_to post.title, post_path(post.id), class: :card__title %>
+        <%= link_to "タイトル:#{post.title}", post_path(post.id), class: :card__title %>
         
         <div class="post-partial">
-          <div id="post-<%= post.id %>",class="flex">
+          <div id="post-<%= post.id %>", class="post_image_flex">
             <% post.images.each do |image| %>
               <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
             <% end %>
