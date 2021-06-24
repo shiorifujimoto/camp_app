@@ -200,10 +200,6 @@ RSpec.describe 'Post#show', type: :system do
     expect(page).to have_selector 'form'
   end
   it 'ログインしていない状態で詳細ページに遷移できるものの、コメント投稿欄が表示されない' do
-    # トップページに遷移する
-    visit root_path
-    # 記事タイトルに詳細ページへのリンクがあることを確認する
-    expect(page).to have_link @post.title, href: post_path(@post)
     # 詳細ページへ遷移する
     visit post_path(@post)
     # コメント用のフォームがないことを確認する
