@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def set_posts
+    @posts = Post.includes(:user).order(created_at: :desc)
+  end
+
   private
 
   def configure_permitted_parameters

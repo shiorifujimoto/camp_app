@@ -55,23 +55,16 @@
       <% end %>
     </div>
     <h2 class="page-heading">
-      <%= "#{@user.nickname}さんの投稿一覧"%>
+      <%= "#{@user.nickname}さんの投稿一覧<いいね順>"%>
     </h2>
     <%# like.count多い順 %>
     <% @posts.each do |post| %>
       <div class="post-partial article_card">
         <div class="desplay">
           <% post.images.each do |image| %>
-            <%= link_to image_tag(image,class: 'post-img' ), post_path(post.id) %>
+            <%= link_to image_tag(image,class: 'post-img user_show_img' ), post_path(post.id) %>
           <% end %>
-          <div class="date">
-            <div class="image-month">
-              <%= post.created_at.month %>
-            </div>
-            <div class="image-year">
-              <%= post.created_at.year %>
-            </div>
-          </div>
+            <%= render partial: 'posts/created_date', locals: { post: post } %>
           <div class="right_pop">
             <%= render partial: 'layouts/count', locals: { post: post } %>
           </div>

@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create, :edit, :update]
+  before_action :authenticate_user!, only:[:create, :edit, :update]
+  before_action :set_posts, only:[:index]
   before_action :set_user, only:[:show, :edit, :update]
   before_action :identification_user, only:[:edit, :update]
   before_action :set_favorites, only:[:show]
+  helper_method :current?
+
   def index
-    @posts = Post.all.order(created_at: :desc)
-    current
   end
 
   def edit
@@ -38,8 +39,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:nickname, :last_name, :first_name, :profile, :email,:password, :avatar)
   end
 
-  def current
-    @post_user = Post.exists?(user_id: current_user.id) if user_signed_in?
+  def current?
+    Post.exists?(user_id: current_user.id)
   end
 
   def identification_user

@@ -1,25 +1,16 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :delete]
+  before_action :set_posts, only: [:index]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :delete]
+
   def index
-    @posts = Post.all.order(created_at: :desc)
   end
 
   def new
     @post = Post.new
   end
 
-  def create
-    @post = Post.new(post_params)
-    if @post.valid?
-      @post.save
-      redirect_to post_path(@post.id), notice: '投稿しました'
-    else
-      render :new
-    end
-  end
-  
   def create
     @post = Post.new(post_params)
     if @post.valid?
@@ -57,13 +48,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to root_path, notice:"削除しました"
-  end
-  
-  def tag_search
-    return nil if params[:keyword] == ""
-    tag = Tag.where(['name LIKE ?',"%#{params[:keyword]}%"] )
-    render json:{ keyword: tag }
+    redirect_to root_path, notice: '削除しました'
   end
 
   private
